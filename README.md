@@ -15,6 +15,19 @@ Run the following command in Terminal:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Lakr233/SleepHoldService/HEAD/net_install.sh)"
 ```
 
+## Uninstallation
+
+To remove SleepHoldService from your system, run:
+
+```bash
+# Stop and unload the service
+sudo launchctl unload /Library/LaunchDaemons/launched.sleepholdservice.plist
+
+# Remove files
+sudo rm -f /Library/LaunchDaemons/launched.sleepholdservice.plist
+sudo rm -f /usr/local/sbin/SleepHoldService
+```
+
 ## Third-Party Integration
 
 This service integrates seamlessly with [Sentry](https://github.com/Lakr233/Sentry). When Sentry is activated, SleepHoldService automatically prevents sleep mode.
