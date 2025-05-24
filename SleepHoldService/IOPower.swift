@@ -1,5 +1,5 @@
 //
-//  PMSet.swift
+//  IOPower.swift
 //  SleepHoldService
 //
 //  Created by 秋星桥 on 5/24/25.
@@ -11,8 +11,9 @@ enum IOPower {
     enum SleepValue: String {
         case canSleep = "sleep_enabled"
         case hold = "sleep_disabled"
-        case unknown = "unknown"
+        case unknown
     }
+
     typealias F_IOPMSetSystemPowerSetting = @convention(c) (CFString, CFTypeRef) -> IOReturn
 
     static let IOPMSetSystemPowerSetting: F_IOPMSetSystemPowerSetting = {
@@ -23,7 +24,7 @@ enum IOPower {
     static func get() -> SleepValue {
         let entry = IORegistryEntryFromPath(kIOMainPortDefault, "IOPower:/IOPowerConnection/IOPMrootDomain")
         defer { IOObjectRelease(entry) }
-        
+
         let property = "SleepDisabled"
         var sleepDisabled = false
 
@@ -41,7 +42,7 @@ enum IOPower {
         }
         return .unknown
     }
-        
+
     static func set(_ status: SleepValue) -> Result<Void, Error> {
         let ret = switch status {
         case .canSleep:
@@ -50,9 +51,9 @@ enum IOPower {
             IOPMSetSystemPowerSetting("SleepDisabled" as CFString, kCFBooleanTrue)
         case .unknown: preconditionFailure()
         }
-        
+
         if ret == kIOReturnSuccess {
-            return .success(Void())
+            return .success(())
         } else {
             return .failure(NSError(domain: "IOPMSetSystemPowerSetting", code: .init(ret)))
         }
