@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		509CD6752DE1C591004B4D84 /* Vapor in Frameworks */ = {isa = PBXBuildFile; productRef = 509CD6742DE1C591004B4D84 /* Vapor */; };
+		50CB4BCA2DE2280D009C58E1 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50CB4BC92DE2280D009C58E1 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		509CD6692DE1C55D004B4D84 /* SleepHoldService */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SleepHoldService; sourceTree = BUILT_PRODUCTS_DIR; };
+		50CB4BC92DE2280D009C58E1 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				509CD6752DE1C591004B4D84 /* Vapor in Frameworks */,
+				50CB4BCA2DE2280D009C58E1 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +54,7 @@
 			children = (
 				509CD66B2DE1C55D004B4D84 /* SleepHoldService */,
 				509CD66A2DE1C55D004B4D84 /* Products */,
+				50CB4BC82DE2280D009C58E1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +64,14 @@
 				509CD6692DE1C55D004B4D84 /* SleepHoldService */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		50CB4BC82DE2280D009C58E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				50CB4BC92DE2280D009C58E1 /* IOKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -11,8 +11,10 @@ import Vapor
 
 // SleepHoldService serve --hostname 127.0.0.1 -p 8180
 
-precondition(getuid() == 0, "SleepHoldService ")
+precondition(getuid() == 0, "SleepHoldService must be run as root")
+_ = IOPower.set(.canSleep)
 _ = SessionManager.shared
+print("[*] current power status: \(IOPower.get().rawValue)")
 
 let app = try await Application.make(.detect())
 

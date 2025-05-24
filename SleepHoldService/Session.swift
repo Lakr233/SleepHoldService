@@ -79,6 +79,7 @@ class SessionManager {
     private func updateSleepState() {
         let hasActiveSessions = !sessions.isEmpty
         let targetState: IOPower.SleepValue = hasActiveSessions ? .hold : .canSleep
+        print("[*] updating sleep state to: \(targetState.rawValue)")
 
         if IOPower.get() != targetState {
             let result = IOPower.set(targetState)

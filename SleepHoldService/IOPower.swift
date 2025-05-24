@@ -17,8 +17,11 @@ enum IOPower {
     typealias F_IOPMSetSystemPowerSetting = @convention(c) (CFString, CFTypeRef) -> IOReturn
 
     static let IOPMSetSystemPowerSetting: F_IOPMSetSystemPowerSetting = {
+        print("IOPMSetSystemPowerSetting is being loaded")
         let handler = dlopen("/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit", RTLD_NOW)
-        return unsafeBitCast(dlsym(handler, "IOPMSetSystemPowerSetting"), to: F_IOPMSetSystemPowerSetting.self)
+        let fn = dlsym(handler, "IOPMSetSystemPowerSetting")
+        if fn == nil { fatalError("Failed to load IOPMSetSystemPowerSetting function") }
+        return unsafeBitCast(fn, to: F_IOPMSetSystemPowerSetting.self)
     }()
 
     static func get() -> SleepValue {
@@ -40,6 +43,7 @@ enum IOPower {
         if ret == KERN_SUCCESS {
             return sleepDisabled ? .hold : .canSleep
         }
+        print("IORegistryEntryGetProperty failed with error: \(ret)")
         return .unknown
     }
 
@@ -49,7 +53,7 @@ enum IOPower {
             IOPMSetSystemPowerSetting("SleepDisabled" as CFString, kCFBooleanFalse)
         case .hold:
             IOPMSetSystemPowerSetting("SleepDisabled" as CFString, kCFBooleanTrue)
-        case .unknown: preconditionFailure()
+        case .unknown: preconditionFailure("you are not allowed to set unknown power status")
         }
 
         if ret == kIOReturnSuccess {
