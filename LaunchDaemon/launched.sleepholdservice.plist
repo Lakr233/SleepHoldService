@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GroupName</key>
+	<string>wheel</string>
+	<key>KeepAlive</key>
+	<dict>
+		<key>Crashed</key>
+		<true/>
+	</dict>
+	<key>Label</key>
+	<string>launched.sleepholdservice</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/sbin/SleepHoldService</string>
+		<string>serve</string>
+		<string>--hostname</string>
+		<string>127.0.0.1</string>
+		<string>-p</string>
+		<string>8180</string>
+	</array>
+	<key>RootDirectory</key>
+	<string>/tmp</string>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/var/log/SleepHoldService.stderr</string>
+	<key>StandardOutPath</key>
+	<string>/var/log/SleepHoldService.stdout</string>
+	<key>StartOnMount</key>
+	<true/>
+	<key>UserName</key>
+	<string>root</string>
+	<key>WorkingDirectory</key>
+	<string>/tmp</string>
+</dict>
+</plist>
