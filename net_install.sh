@@ -54,4 +54,7 @@ fi
 
 popd
 
+sudo rm -rf /tmp/sleepholdservice.install
+sudo rm -rf "${RELEASE_FILE_PATH}"
+
 echo "[*] SleepHoldService has been installed successfully."
