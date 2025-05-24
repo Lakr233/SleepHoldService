@@ -14,7 +14,6 @@ import Vapor
 precondition(getuid() == 0, "SleepHoldService must be run as root")
 _ = IOPower.set(.canSleep)
 _ = SessionManager.shared
-print("[*] current power status: \(IOPower.get().rawValue)")
 
 let app = try await Application.make(.detect())
 
@@ -23,7 +22,7 @@ app.get("ping") { _ in
 }
 
 app.get(["service", "status"]) { _ in
-    let s = IOPower.get()
+    let s = IOPower.read()
     return ["status": s.rawValue]
 }
 

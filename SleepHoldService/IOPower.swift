@@ -8,7 +8,7 @@
 import Foundation
 
 enum IOPower {
-    enum SleepValue: String {
+    enum SleepValue: String, RawRepresentable, Codable {
         case canSleep = "sleep_enabled"
         case hold = "sleep_disabled"
         case unknown
@@ -17,22 +17,14 @@ enum IOPower {
     typealias F_IOPMSetSystemPowerSetting = @convention(c) (CFString, CFTypeRef) -> IOReturn
 
     static let IOPMSetSystemPowerSetting: F_IOPMSetSystemPowerSetting = {
-        print("IOPMSetSystemPowerSetting is being loaded")
         let handler = dlopen("/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit", RTLD_NOW)
-        if handler == nil {
-            print("Failed to load IOKit framework: \(String(cString: dlerror()))")
-            fatalError("Failed to load IOKit framework")
-        }
+        if handler == nil { fatalError("Failed to load IOKit framework") }
         let fn = dlsym(handler, "IOPMSetSystemPowerSetting")
-        if fn == nil {
-            print("Failed to load IOPMSetSystemPowerSetting function: \(String(cString: dlerror()))")
-            fatalError("Failed to load IOPMSetSystemPowerSetting function")
-        }
-        print("IOPMSetSystemPowerSetting function loaded successfully at \(fn.debugDescription)")
+        if fn == nil { fatalError("Failed to load IOPMSetSystemPowerSetting function") }
         return unsafeBitCast(fn, to: F_IOPMSetSystemPowerSetting.self)
     }()
 
-    static func get() -> SleepValue {
+    static func read() -> SleepValue {
         let entry = IORegistryEntryFromPath(kIOMainPortDefault, "IOPower:/IOPowerConnection/IOPMrootDomain")
         defer { IOObjectRelease(entry) }
 
@@ -51,7 +43,6 @@ enum IOPower {
         if ret == KERN_SUCCESS {
             return sleepDisabled ? .hold : .canSleep
         }
-        print("IORegistryEntryGetProperty failed with error: \(ret)")
         return .unknown
     }
 
