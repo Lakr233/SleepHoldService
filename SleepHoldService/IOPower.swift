@@ -19,8 +19,15 @@ enum IOPower {
     static let IOPMSetSystemPowerSetting: F_IOPMSetSystemPowerSetting = {
         print("IOPMSetSystemPowerSetting is being loaded")
         let handler = dlopen("/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit", RTLD_NOW)
+        if handler == nil {
+            print("Failed to load IOKit framework: \(String(cString: dlerror()))")
+            fatalError("Failed to load IOKit framework")
+        }
         let fn = dlsym(handler, "IOPMSetSystemPowerSetting")
-        if fn == nil { fatalError("Failed to load IOPMSetSystemPowerSetting function") }
+        if fn == nil {
+            print("Failed to load IOPMSetSystemPowerSetting function: \(String(cString: dlerror()))")
+            fatalError("Failed to load IOPMSetSystemPowerSetting function")
+        }
         return unsafeBitCast(fn, to: F_IOPMSetSystemPowerSetting.self)
     }()
 

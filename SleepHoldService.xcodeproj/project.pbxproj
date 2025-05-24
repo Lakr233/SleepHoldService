@@ -26,6 +26,7 @@
 /* Begin PBXFileReference section */
 		509CD6692DE1C55D004B4D84 /* SleepHoldService */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SleepHoldService; sourceTree = BUILT_PRODUCTS_DIR; };
 		50CB4BC92DE2280D009C58E1 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		50CB4BD12DE22940009C58E1 /* libswiftIOKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftIOKit.tbd; path = usr/lib/swift/libswiftIOKit.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -69,6 +70,7 @@
 		50CB4BC82DE2280D009C58E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50CB4BD12DE22940009C58E1 /* libswiftIOKit.tbd */,
 				50CB4BC92DE2280D009C58E1 /* IOKit.framework */,
 			);
 			name = Frameworks;
