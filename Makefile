@@ -13,7 +13,8 @@ PLIST_NAME = launched.sleepholdservice.plist
 all: build
 
 build:
-	xcodebuild -scheme $(SCHEME) -configuration $(CONFIGURATION) -derivedDataPath $(BUILD_DIR)
+	xcodebuild -scheme $(SCHEME) -configuration $(CONFIGURATION) -derivedDataPath $(BUILD_DIR) \
+		CODE_SIGN_IDENTITY="" CODE_SIGNING_ALLOWED=NO
 
 clean:
 	rm -rf $(BUILD_DIR)
