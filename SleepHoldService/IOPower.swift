@@ -28,6 +28,7 @@ enum IOPower {
             print("Failed to load IOPMSetSystemPowerSetting function: \(String(cString: dlerror()))")
             fatalError("Failed to load IOPMSetSystemPowerSetting function")
         }
+        print("IOPMSetSystemPowerSetting function loaded successfully at \(fn.debugDescription)")
         return unsafeBitCast(fn, to: F_IOPMSetSystemPowerSetting.self)
     }()
 
