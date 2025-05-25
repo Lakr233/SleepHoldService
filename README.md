@@ -26,6 +26,9 @@ sudo launchctl unload /Library/LaunchDaemons/launched.sleepholdservice.plist
 # Remove files
 sudo rm -f /Library/LaunchDaemons/launched.sleepholdservice.plist
 sudo rm -f /usr/local/sbin/SleepHoldService
+
+# Re-enable sleep mode manually
+sudo pmset -a disablesleep 0
 ```
 
 ## Third-Party Integration
