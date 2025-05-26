@@ -1,5 +1,10 @@
 # SleepHoldService
 
+<p align="center">
+  <a href="README.md">English</a> |
+  <a href="./i18n/zh-Hans/README.md">简体中文</a>
+</p>
+
 A lightweight macOS service that prevents system sleep when the lid is closed.
 
 ## System Requirements
