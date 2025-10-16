@@ -30,7 +30,7 @@ if [[ ! -d "/usr/local/sbin" ]]; then
 fi
 sudo rm -rf /usr/local/sbin/SleepHoldService
 sudo cp -f SleepHoldService /usr/local/sbin/SleepHoldService
-sudo spctl --assess --verbose=4 /usr/local/sbin/SleepHoldService
+sudo spctl --assess --verbose=4 /usr/local/sbin/SleepHoldService || echo "[!] Gatekeeper assessment failed (non-fatal)"
 
 echo "[*] Installing LaunchDaemon..."
 sudo xattr -cr launched.sleepholdservice.plist
